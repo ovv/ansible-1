@@ -424,6 +424,7 @@ def main():
           hostname = dict(),
           ostemplate = dict(),
           disk = dict(type='str', default='3'),
+          cores = dict(type='int', default=0),
           cpus = dict(type='int', default=1),
           memory = dict(type='int', default=512),
           swap = dict(type='int', default=0),
@@ -503,6 +504,7 @@ def main():
                          % (module.params['ostemplate'], node, template_store))
 
       create_instance(module, proxmox, vmid, node, disk, storage, cpus, memory, swap, timeout,
+                      cores = module.params['cores'] or None,
                       pool = module.params['pool'],
                       password = module.params['password'],
                       hostname = module.params['hostname'],
